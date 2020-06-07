@@ -14,7 +14,18 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "unlayer-wrapper": [
+        "dist/unlayer-wrapper/unlayer-wrapper",
+        "dist/unlayer-wrapper"
+      ],
+      "static-table": [
+        "dist/static-table/static-table",
+        "dist/static-table"
+      ]
+    },
+    "resolveJsonModule": true
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

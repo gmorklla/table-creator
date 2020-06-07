@@ -1,0 +1,29 @@
+<table>
+  <ng-container *ngFor="let row of rows">
+    <tr>
+      <ng-container *ngFor="let td of row.cols">
+        <ng-container *ngIf="!!td.display; else elseTemplate">
+          <td
+            libTableContainer
+            [tdData]="td"
+            *ngIf="!!td.display"
+            [rowSpan]="td.rowspan"
+            [colSpan]="td.colspan"
+          >
+            {{td.content}}
+            <span class="config">{{row.idx}} - {{td.idx}}</span>
+          </td>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <ng-container
+            libTableContainer
+            [tdData]="td"
+          >
+          </ng-container>
+        </ng-template>
+      </ng-container>
+    </tr>
+  </ng-container>
+</table>
+<hr>
+<lib-table-config [data]="data"></lib-table-config>

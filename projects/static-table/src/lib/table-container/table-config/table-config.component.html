@@ -1,0 +1,126 @@
+<div class="table-config-wrapper">
+  <!-- Table td config -->
+  <table class="table-config">
+    <ng-container *ngFor="let row of rows">
+      <tr>
+        <ng-container *ngFor="let td of row.cols">
+          <td
+            [matMenuTriggerFor]="menu"
+            [matMenuTriggerData]="{td: td, rowIdx: row.idx}"
+            (menuOpened)="menuOpened({td: td, rowIdx: row.idx})"
+            [ngStyle]="{'background-color': !!td.display ? '#9acd327d' : '#ed143d75'}"
+          >
+            <div class="table-config-row">
+              <span>Posición: </span>
+              <span>{{row.idx}} - {{td.idx}}</span>
+            </div>
+            <div class="table-config-row">
+              <span>Filas: </span>
+              <span>{{td.rowspan}}</span>
+            </div>
+            <div class="table-config-row">
+              <span>Columnas: </span>
+              <span>{{td.colspan}}</span>
+            </div>
+            <div class="table-config-row">
+              <span>Mostrar: </span>
+              <span>{{td.display}}</span>
+            </div>
+          </td>
+        </ng-container>
+      </tr>
+    </ng-container>
+  </table>
+  <!-- Table general config -->
+  <div
+    class="table-general-config-wrapper"
+    [formGroup]="generalTableFG"
+  >
+    <div>
+      <mat-form-field>
+        <input
+          type="number"
+          matInput
+          placeholder="Filas"
+          formControlName="rows"
+        >
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input
+          type="number"
+          matInput
+          placeholder="Columnas"
+          formControlName="cols"
+        >
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
+<!-- Mat menu -->
+<mat-menu
+  #menu="matMenu"
+  (closed)="resetTdFG();"
+>
+  <ng-template
+    matMenuContent
+    let-td="td"
+    let-rowIdx="rowIdx"
+  >
+    <div (click)="$event.stopPropagation()">
+      <form
+        [formGroup]="tdFG"
+        novalidate
+      >
+        <div class="td-mat-menu">
+          <span style="margin-right: 10px;">
+            Filas ({{td.rowspan}})
+          </span>
+          <span class="spacer"></span>
+          <mat-form-field [floatLabel]="'never'">
+            <input
+              formControlName="rowspan"
+              matInput
+              placeholder="No. de filas"
+            />
+          </mat-form-field>
+        </div>
+        <div class="td-mat-menu">
+          <span style="margin-right: 10px;">
+            Columnas ({{td.colspan}})
+          </span>
+          <span class="spacer"></span>
+          <mat-form-field [floatLabel]="'never'">
+            <input
+              formControlName="colspan"
+              matInput
+              placeholder="No. de columnas"
+            />
+          </mat-form-field>
+        </div>
+        <div
+          class="td-mat-menu"
+          (click)="$event.stopPropagation()"
+        >
+          <span>
+            Mostrar ({{td.display}})
+          </span>
+          <span class="spacer"></span>
+          <button
+            mat-icon-button
+            (click)="$event.stopPropagation(); toggleTdDisplay(rowIdx, td.idx)"
+          >
+            <ng-container *ngIf="!!td.display; else noDisplay">
+              <mat-icon>check_box</mat-icon>
+            </ng-container>
+            <ng-template #noDisplay>
+              <mat-icon>check_box_outline_blank</mat-icon>
+            </ng-template>
+          </button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+</mat-menu>
