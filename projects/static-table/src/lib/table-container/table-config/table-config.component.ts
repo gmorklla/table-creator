@@ -1,31 +1,40 @@
 import {
   Component,
+  EventEmitter,
   Input,
   OnChanges,
   OnDestroy,
   OnInit,
+  Output,
   SimpleChanges,
   ViewChild,
-  Output,
-  EventEmitter,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 import { Subject } from 'rxjs';
 import {
   debounceTime,
   distinctUntilChanged,
-  filter,
   takeUntil,
   tap,
 } from 'rxjs/operators';
 import { Row, StaticTableI } from '../../models/table.model';
 import { StaticTableService } from '../../static-table.service';
-import { TdItem } from './../../models/table.model';
 
 interface GeneralTableFG {
   rows: number;
   cols: number;
+}
+
+interface TDMouseover {
+  e: MouseEvent;
+  tdIdx: number;
+  rowIdx: number;
+}
+
+interface TdHovered {
+  rowIdx: number;
+  tdIdx: number;
 }
 
 @Component({
@@ -39,6 +48,7 @@ export class TableConfigComponent implements OnInit, OnDestroy, OnChanges {
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
   @ViewChild(MatMenu) menu: MatMenu;
   generalTableFG: FormGroup;
+  tdHovered: TdHovered = { rowIdx: null, tdIdx: null };
   destroy$ = new Subject();
 
   get rows(): Row[] {
@@ -63,6 +73,7 @@ export class TableConfigComponent implements OnInit, OnDestroy, OnChanges {
   ngOnInit() {
     this.initForm();
     this.listenForm();
+    this.listenTDMouseover();
   }
 
   ngOnDestroy() {
@@ -120,5 +131,20 @@ export class TableConfigComponent implements OnInit, OnDestroy, OnChanges {
 
   toggleTdDisplay(rowIdx: number, tdIdx: number) {
     this.tableS.toggleTdDisplay(rowIdx, tdIdx);
+  }
+
+  onTdMouseover(e: MouseEvent, tdIdx: number, rowIdx: number) {
+    this.tableS.mouseover$.next({ e, tdIdx, rowIdx });
+  }
+
+  listenTDMouseover() {
+    this.tableS.mouseover$
+      .pipe(
+        tap((val) => {
+          this.tdHovered = { tdIdx: val.tdIdx, rowIdx: val.rowIdx };
+        }),
+        takeUntil(this.destroy$)
+      )
+      .subscribe();
   }
 }

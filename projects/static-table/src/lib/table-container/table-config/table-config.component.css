@@ -76,3 +76,8 @@ td {
 .contenido {
   width: 100%;
 }
+
+.tdHovered {
+  border: 2px solid black;
+  box-shadow: 2px 2px black;
+}

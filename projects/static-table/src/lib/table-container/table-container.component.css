@@ -27,6 +27,11 @@ td {
   line-height: 12px;
 }
 
+.tdHovered {
+  border: 2px solid black;
+  box-shadow: 2px 2px black;
+}
+
 /* tr:nth-child(even) {
   background-color: #dddddd;
 } */

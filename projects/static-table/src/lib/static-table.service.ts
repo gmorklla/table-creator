@@ -4,6 +4,12 @@ import { of, Subject, Subscription } from 'rxjs';
 import { catchError, take, tap } from 'rxjs/operators';
 import { Row, StaticTableI, TdItem } from './models/table.model';
 
+interface TDMouseover {
+  e: MouseEvent;
+  tdIdx: number;
+  rowIdx: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -11,6 +17,7 @@ export class StaticTableService implements OnDestroy {
   private data: StaticTableI;
   data$ = new Subject<StaticTableI>();
   dataSub$: Subscription;
+  mouseover$ = new Subject<TDMouseover>();
 
   constructor(private http: HttpClient) {
     this.getData();

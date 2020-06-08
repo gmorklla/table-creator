@@ -1,7 +1,7 @@
 <table [style]="data?.style">
-  <ng-container *ngFor="let row of rows">
+  <ng-container *ngFor="let row of rows; let i = index;">
     <tr>
-      <ng-container *ngFor="let td of row.cols">
+      <ng-container *ngFor="let td of row.cols; let k = index;">
         <ng-container *ngIf="!!td.display; else elseTemplate">
           <td
             libTableContainer
@@ -10,6 +10,7 @@
             [rowSpan]="td.rowspan"
             [colSpan]="td.colspan"
             [style]="td.style"
+            [ngClass]="{'tdHovered': tdHovered.rowIdx === i && tdHovered.tdIdx === k}"
           >
             {{td.content}}
             <span
