@@ -39,10 +39,7 @@ export class TableConfigComponent implements OnInit, OnDestroy, OnChanges {
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
   @ViewChild(MatMenu) menu: MatMenu;
   generalTableFG: FormGroup;
-  tdFG: FormGroup;
   destroy$ = new Subject();
-  selectedRowIdx: number;
-  selectedTdIdx: number;
 
   get rows(): Row[] {
     return (!!this.data && this.data.rows) || [];
@@ -88,11 +85,6 @@ export class TableConfigComponent implements OnInit, OnDestroy, OnChanges {
       rows: [null],
       cols: [null],
     });
-    this.tdFG = this.fb.group({
-      rowspan: [null],
-      colspan: [null],
-      contenido: [''],
-    });
   }
 
   setForm() {
@@ -106,54 +98,6 @@ export class TableConfigComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   listenForm() {
-    this.tdFG
-      .get('rowspan')
-      .valueChanges.pipe(
-        distinctUntilChanged(),
-        debounceTime(1000),
-        filter((totalRowspan) => !!totalRowspan),
-        tap((totalRowspan) => {
-          this.tableS.changeRowspan(
-            this.selectedRowIdx,
-            this.selectedTdIdx,
-            totalRowspan
-          );
-        }),
-        takeUntil(this.destroy$)
-      )
-      .subscribe();
-    this.tdFG
-      .get('colspan')
-      .valueChanges.pipe(
-        distinctUntilChanged(),
-        debounceTime(1000),
-        filter((totalColspan) => !!totalColspan),
-        tap((totalColspan) => {
-          this.tableS.changeColspan(
-            this.selectedRowIdx,
-            this.selectedTdIdx,
-            totalColspan
-          );
-        }),
-        takeUntil(this.destroy$)
-      )
-      .subscribe();
-    this.tdFG
-      .get('contenido')
-      .valueChanges.pipe(
-        distinctUntilChanged(),
-        debounceTime(1000),
-        filter((contenido) => !!contenido),
-        tap((contenido) => {
-          this.tableS.changeContent(
-            this.selectedRowIdx,
-            this.selectedTdIdx,
-            contenido
-          );
-        }),
-        takeUntil(this.destroy$)
-      )
-      .subscribe();
     this.generalTableFG
       .get('rows')
       .valueChanges.pipe(
@@ -172,23 +116,6 @@ export class TableConfigComponent implements OnInit, OnDestroy, OnChanges {
         takeUntil(this.destroy$)
       )
       .subscribe();
-  }
-
-  resetTdFG() {
-    this.tdFG.reset({ emitEvent: false });
-  }
-
-  menuOpened(obj: { rowIdx: number; td: TdItem }) {
-    this.selectedRowIdx = obj.rowIdx;
-    this.selectedTdIdx = obj.td.idx;
-    this.tdFG.setValue(
-      {
-        rowspan: obj.td.rowspan,
-        colspan: obj.td.colspan,
-        contenido: obj.td.content,
-      },
-      { emitEvent: false }
-    );
   }
 
   toggleTdDisplay(rowIdx: number, tdIdx: number) {

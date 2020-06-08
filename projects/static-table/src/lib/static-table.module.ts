@@ -12,6 +12,7 @@ import { StaticTableComponent } from './static-table.component';
 import { TableContainerComponent } from './table-container/table-container.component';
 import { TableConfigComponent } from './table-container/table-config/table-config.component';
 import { TableContainerDirective } from './table-container/table-container.directive';
+import { TdConfigComponent } from './table-container/table-config/td-config/td-config.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { TableContainerDirective } from './table-container/table-container.direc
     TableContainerComponent,
     TableConfigComponent,
     TableContainerDirective,
+    TdConfigComponent,
   ],
   imports: [
     CommonModule,

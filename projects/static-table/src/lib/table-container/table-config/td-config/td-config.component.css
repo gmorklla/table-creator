@@ -1,0 +1,34 @@
+.td-mat-menu {
+  margin: 0 10px;
+  min-width: 220px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.td-mat-menu.toggle {
+  margin-bottom: 10px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.table-general-config-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.table-general-config-wrapper div {
+  width: 49%;
+}
+
+::ng-deep .mat-form-field-infix {
+  width: auto !important;
+}
+
+.contenido {
+  width: 100%;
+}

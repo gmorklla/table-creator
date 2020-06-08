@@ -1,4 +1,5 @@
 <div class="table-config-wrapper">
+  <!-- Show/hide config -->
   <button
     matTooltip="Muestra u oculta config"
     matTooltipPosition="right"
@@ -25,7 +26,6 @@
           <td
             [matMenuTriggerFor]="menu"
             [matMenuTriggerData]="{td: td, rowIdx: row.idx}"
-            (menuOpened)="menuOpened({td: td, rowIdx: row.idx})"
             [ngStyle]="{'background-color': !!td.display ? 'rgba(215, 242, 160, 0.49)' : 'rgba(255, 134, 157, 0.46)'}"
           >
             <div class="table-config-row">
@@ -66,81 +66,17 @@
   </div>
 </div>
 
-<!-- Mat menu -->
-<mat-menu
-  #menu="matMenu"
-  (closed)="resetTdFG();"
->
+<!-- Mat menu para td config -->
+<mat-menu #menu="matMenu">
   <ng-template
     matMenuContent
     let-td="td"
     let-rowIdx="rowIdx"
   >
-    <div (click)="$event.stopPropagation()">
-      <form
-        autocomplete="off"
-        [formGroup]="tdFG"
-        novalidate
-      >
-        <div class="td-mat-menu">
-          <span style="margin-right: 10px;">
-            Filas ({{td.rowspan}})
-          </span>
-          <span class="spacer"></span>
-          <mat-form-field [floatLabel]="'never'">
-            <input
-              formControlName="rowspan"
-              matInput
-              placeholder="No. de filas"
-            />
-          </mat-form-field>
-        </div>
-        <div class="td-mat-menu">
-          <span style="margin-right: 10px;">
-            Columnas ({{td.colspan}})
-          </span>
-          <span class="spacer"></span>
-          <mat-form-field [floatLabel]="'never'">
-            <input
-              formControlName="colspan"
-              matInput
-              placeholder="No. de columnas"
-            />
-          </mat-form-field>
-        </div>
-        <div
-          class="td-mat-menu toggle"
-          (click)="$event.stopPropagation()"
-        >
-          <span>
-            Mostrar ({{td.display}})
-          </span>
-          <span class="spacer"></span>
-          <button
-            mat-icon-button
-            (click)="$event.stopPropagation(); toggleTdDisplay(rowIdx, td.idx)"
-          >
-            <ng-container *ngIf="!!td.display; else noDisplay">
-              <mat-icon>check_box</mat-icon>
-            </ng-container>
-            <ng-template #noDisplay>
-              <mat-icon>check_box_outline_blank</mat-icon>
-            </ng-template>
-          </button>
-        </div>
-        <div class="td-mat-menu">
-          <mat-form-field
-            appearance="fill"
-            class="contenido"
-          >
-            <mat-label>Textarea</mat-label>
-            <textarea
-              matInput
-              formControlName="contenido"
-            ></textarea>
-          </mat-form-field>
-        </div>
-      </form>
-    </div>
+    <lib-td-config
+      [rowIdx]="rowIdx"
+      [td]="td"
+      (click)="$event.stopPropagation()"
+    ></lib-td-config>
   </ng-template>
 </mat-menu>

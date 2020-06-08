@@ -1,0 +1,68 @@
+    <div (click)="$event.stopPropagation()">
+      <form
+        autocomplete="off"
+        [formGroup]="tdFG"
+        novalidate
+      >
+        <div class="td-mat-menu">
+          <span style="margin-right: 10px;">
+            Filas ({{td.rowspan}})
+          </span>
+          <span class="spacer"></span>
+          <mat-form-field [floatLabel]="'never'">
+            <input
+              type="number"
+              formControlName="rowspan"
+              matInput
+              placeholder="No. de filas"
+            />
+          </mat-form-field>
+        </div>
+        <div class="td-mat-menu">
+          <span style="margin-right: 10px;">
+            Columnas ({{td.colspan}})
+          </span>
+          <span class="spacer"></span>
+          <mat-form-field [floatLabel]="'never'">
+            <input
+              type="number"
+              formControlName="colspan"
+              matInput
+              placeholder="No. de columnas"
+            />
+          </mat-form-field>
+        </div>
+        <div
+          class="td-mat-menu toggle"
+          (click)="$event.stopPropagation()"
+        >
+          <span>
+            Mostrar ({{td.display}})
+          </span>
+          <span class="spacer"></span>
+          <button
+            mat-icon-button
+            (click)="$event.stopPropagation(); toggleTdDisplay(rowIdx, td.idx)"
+          >
+            <ng-container *ngIf="!!td.display; else noDisplay">
+              <mat-icon>check_box</mat-icon>
+            </ng-container>
+            <ng-template #noDisplay>
+              <mat-icon>check_box_outline_blank</mat-icon>
+            </ng-template>
+          </button>
+        </div>
+        <div class="td-mat-menu">
+          <mat-form-field
+            appearance="fill"
+            class="contenido"
+          >
+            <mat-label>Textarea</mat-label>
+            <textarea
+              matInput
+              formControlName="contenido"
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </form>
+    </div>
