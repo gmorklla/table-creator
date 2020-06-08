@@ -1,4 +1,3 @@
-import { TdItem } from './../../models/table.model';
 import {
   Component,
   Input,
@@ -7,19 +6,22 @@ import {
   OnInit,
   SimpleChanges,
   ViewChild,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatMenuTrigger } from '@angular/material/menu';
+import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 import { Subject } from 'rxjs';
 import {
   debounceTime,
   distinctUntilChanged,
+  filter,
   takeUntil,
   tap,
-  filter,
 } from 'rxjs/operators';
 import { Row, StaticTableI } from '../../models/table.model';
 import { StaticTableService } from '../../static-table.service';
+import { TdItem } from './../../models/table.model';
 
 interface GeneralTableFG {
   rows: number;
@@ -33,10 +35,12 @@ interface GeneralTableFG {
 })
 export class TableConfigComponent implements OnInit, OnDestroy, OnChanges {
   @Input() data: StaticTableI;
+  @Output() toggleShowConfig = new EventEmitter();
+  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+  @ViewChild(MatMenu) menu: MatMenu;
   generalTableFG: FormGroup;
   tdFG: FormGroup;
   destroy$ = new Subject();
-  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
   selectedRowIdx: number;
   selectedTdIdx: number;
 

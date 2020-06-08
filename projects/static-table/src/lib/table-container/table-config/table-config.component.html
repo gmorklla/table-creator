@@ -1,30 +1,35 @@
 <div class="table-config-wrapper">
+  <button
+    matTooltip="Muestra u oculta config"
+    matTooltipPosition="right"
+    mat-icon-button
+    (click)="toggleShowConfig.emit()"
+  >
+    <mat-icon style="color: #aaaaaa">visibility</mat-icon>
+  </button>
   <!-- Table td config -->
   <table class="table-config">
-    <ng-container *ngFor="let row of rows">
+    <ng-container *ngFor="let row of rows; let i = index;">
+      <tr *ngIf="i === 0">
+        <ng-container *ngFor="let td of row.cols; let j = index;">
+          <td
+            *ngIf="j === 0"
+            style="background-color: slategray;"
+          ></td>
+          <th>{{j}}</th>
+        </ng-container>
+      </tr>
       <tr>
-        <ng-container *ngFor="let td of row.cols">
+        <ng-container *ngFor="let td of row.cols; let k = index;">
+          <th *ngIf="k === 0">{{i}}</th>
           <td
             [matMenuTriggerFor]="menu"
             [matMenuTriggerData]="{td: td, rowIdx: row.idx}"
             (menuOpened)="menuOpened({td: td, rowIdx: row.idx})"
-            [ngStyle]="{'background-color': !!td.display ? '#9acd327d' : '#ed143d75'}"
+            [ngStyle]="{'background-color': !!td.display ? 'rgba(215, 242, 160, 0.49)' : 'rgba(255, 134, 157, 0.46)'}"
           >
             <div class="table-config-row">
-              <span>Posición: </span>
-              <span>{{row.idx}} - {{td.idx}}</span>
-            </div>
-            <div class="table-config-row">
-              <span>Filas: </span>
-              <span>{{td.rowspan}}</span>
-            </div>
-            <div class="table-config-row">
-              <span>Columnas: </span>
-              <span>{{td.colspan}}</span>
-            </div>
-            <div class="table-config-row">
-              <span>Mostrar: </span>
-              <span>{{td.display}}</span>
+              <span>-</span>
             </div>
           </td>
         </ng-container>

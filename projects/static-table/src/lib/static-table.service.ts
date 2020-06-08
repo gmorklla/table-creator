@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { of, Subject, Subscription } from 'rxjs';
 import { catchError, take, tap } from 'rxjs/operators';
-import { StaticTableI, TdItem, Row } from './models/table.model';
+import { Row, StaticTableI, TdItem } from './models/table.model';
 
 @Injectable({
   providedIn: 'root',
