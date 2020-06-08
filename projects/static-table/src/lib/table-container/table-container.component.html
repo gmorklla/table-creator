@@ -17,7 +17,6 @@
               class="config"
               [matMenuTriggerFor]="tableConfigCmp.menu"
               [matMenuTriggerData]="{td: td, rowIdx: row.idx}"
-              (menuOpened)="tableConfigCmp.menuOpened({td: td, rowIdx: row.idx})"
             >{{row.idx}} - {{td.idx}}</span>
           </td>
         </ng-container>

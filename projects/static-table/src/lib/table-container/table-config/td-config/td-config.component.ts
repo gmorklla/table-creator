@@ -25,12 +25,6 @@ export class TdConfigComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder, private tableS: StaticTableService) {}
 
   ngOnInit() {
-    console.log(
-      '%c td-config ',
-      'background: black; color: white',
-      this.rowIdx,
-      this.td
-    );
     this.initForm();
     this.setForm();
     this.listenForm();
