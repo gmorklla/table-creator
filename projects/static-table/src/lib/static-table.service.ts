@@ -58,6 +58,12 @@ export class StaticTableService implements OnDestroy {
     this.data$.next(dataTableClone);
   }
 
+  changeContent(rowIdx: number, tdIdx: number, content: string = ''): void {
+    const dataTableClone: StaticTableI = this.getClone();
+    dataTableClone.rows[rowIdx].cols[tdIdx].content = content;
+    this.data$.next(dataTableClone);
+  }
+
   toggleTdDisplay(rowIdx: number, tdIdx: number): void {
     const dataTableClone: StaticTableI = this.getClone();
     dataTableClone.rows[rowIdx].cols[tdIdx].display = !dataTableClone.rows[

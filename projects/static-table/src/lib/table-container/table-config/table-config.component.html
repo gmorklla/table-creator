@@ -106,7 +106,7 @@
           </mat-form-field>
         </div>
         <div
-          class="td-mat-menu"
+          class="td-mat-menu toggle"
           (click)="$event.stopPropagation()"
         >
           <span>
@@ -124,6 +124,18 @@
               <mat-icon>check_box_outline_blank</mat-icon>
             </ng-template>
           </button>
+        </div>
+        <div class="td-mat-menu">
+          <mat-form-field
+            appearance="fill"
+            class="contenido"
+          >
+            <mat-label>Textarea</mat-label>
+            <textarea
+              matInput
+              formControlName="contenido"
+            ></textarea>
+          </mat-form-field>
         </div>
       </form>
     </div>

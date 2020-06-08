@@ -50,6 +50,10 @@ td {
   align-items: center;
 }
 
+.td-mat-menu.toggle {
+  margin-bottom: 10px;
+}
+
 .spacer {
   flex: 1 1 auto;
 }
@@ -67,4 +71,8 @@ td {
 
 ::ng-deep .mat-form-field-infix {
   width: auto !important;
+}
+
+.contenido {
+  width: 100%;
 }

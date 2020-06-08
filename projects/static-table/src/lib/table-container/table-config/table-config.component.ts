@@ -9,7 +9,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 import { Subject } from 'rxjs';
 import {
@@ -91,6 +91,7 @@ export class TableConfigComponent implements OnInit, OnDestroy, OnChanges {
     this.tdFG = this.fb.group({
       rowspan: [null],
       colspan: [null],
+      contenido: [''],
     });
   }
 
@@ -137,6 +138,22 @@ export class TableConfigComponent implements OnInit, OnDestroy, OnChanges {
         takeUntil(this.destroy$)
       )
       .subscribe();
+    this.tdFG
+      .get('contenido')
+      .valueChanges.pipe(
+        distinctUntilChanged(),
+        debounceTime(1000),
+        filter((contenido) => !!contenido),
+        tap((contenido) => {
+          this.tableS.changeContent(
+            this.selectedRowIdx,
+            this.selectedTdIdx,
+            contenido
+          );
+        }),
+        takeUntil(this.destroy$)
+      )
+      .subscribe();
     this.generalTableFG
       .get('rows')
       .valueChanges.pipe(
@@ -165,7 +182,11 @@ export class TableConfigComponent implements OnInit, OnDestroy, OnChanges {
     this.selectedRowIdx = obj.rowIdx;
     this.selectedTdIdx = obj.td.idx;
     this.tdFG.setValue(
-      { rowspan: obj.td.rowspan, colspan: obj.td.colspan },
+      {
+        rowspan: obj.td.rowspan,
+        colspan: obj.td.colspan,
+        contenido: obj.td.content,
+      },
       { emitEvent: false }
     );
   }
