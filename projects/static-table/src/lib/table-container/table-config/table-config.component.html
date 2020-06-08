@@ -48,6 +48,7 @@
           matInput
           placeholder="Filas"
           formControlName="rows"
+          autocomplete="off"
         >
       </mat-form-field>
     </div>
@@ -58,6 +59,7 @@
           matInput
           placeholder="Columnas"
           formControlName="cols"
+          autocomplete="off"
         >
       </mat-form-field>
     </div>
@@ -76,6 +78,7 @@
   >
     <div (click)="$event.stopPropagation()">
       <form
+        autocomplete="off"
         [formGroup]="tdFG"
         novalidate
       >

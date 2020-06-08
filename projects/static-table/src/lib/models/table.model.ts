@@ -1,5 +1,6 @@
 export interface StaticTableI {
   rows: Row[];
+  style: string;
 }
 
 export interface Row {
@@ -13,4 +14,5 @@ export interface TdItem {
   rowspan: number;
   content: string;
   idx: number;
+  style: string;
 }

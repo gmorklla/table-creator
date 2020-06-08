@@ -1,78 +1,104 @@
 {
   "rows": [{
-      "cols": [{
-          "display": true,
-          "colspan": 1,
-          "rowspan": 1,
-          "content": "Contenido",
-          "idx": 0
-        },
-        {
-          "display": true,
-          "colspan": 1,
-          "rowspan": 1,
-          "content": "Contenido",
-          "idx": 1
-        },
-        {
-          "display": true,
-          "colspan": 1,
-          "rowspan": 1,
-          "content": "Contenido",
-          "idx": 2
-        }
-      ],
-      "idx": 0
-    },
-    {
-      "cols": [{
-          "display": true,
-          "colspan": 1,
-          "rowspan": 1,
-          "content": "Contenido",
-          "idx": 0
-        },
-        {
-          "display": true,
-          "colspan": 1,
-          "rowspan": 1,
-          "content": "Contenido",
-          "idx": 1
-        },
-        {
-          "display": true,
-          "colspan": 1,
-          "rowspan": 1,
-          "content": "Contenido",
-          "idx": 2
-        }
-      ],
-      "idx": 1
-    },
-    {
-      "cols": [{
-          "display": true,
-          "colspan": 1,
-          "rowspan": 1,
-          "content": "Contenido",
-          "idx": 0
-        },
-        {
-          "display": true,
-          "colspan": 1,
-          "rowspan": 1,
-          "content": "Contenido",
-          "idx": 1
-        },
-        {
-          "display": true,
-          "colspan": 1,
-          "rowspan": 1,
-          "content": "Contenido",
-          "idx": 2
-        }
-      ],
-      "idx": 2
-    }
-  ]
+    "cols": [{
+        "display": true,
+        "colspan": 1,
+        "rowspan": 1,
+        "content": "txt",
+        "idx": 0,
+        "style": "border: 2px solid black; background-color: black; color: white; text-align: center;"
+      },
+      {
+        "display": true,
+        "colspan": 1,
+        "rowspan": 1,
+        "content": "txt",
+        "idx": 1,
+        "style": ""
+      },
+      {
+        "display": true,
+        "colspan": 1,
+        "rowspan": 1,
+        "content": "txt",
+        "idx": 2,
+        "style": ""
+      },
+      {
+        "display": true,
+        "colspan": 1,
+        "rowspan": 1,
+        "content": "txt",
+        "idx": 3,
+        "style": ""
+      },
+      {
+        "display": true,
+        "colspan": 1,
+        "rowspan": 1,
+        "content": "txt",
+        "idx": 4,
+        "style": ""
+      },
+      {
+        "display": true,
+        "colspan": 1,
+        "rowspan": 1,
+        "content": "txt",
+        "idx": 5,
+        "style": ""
+      },
+      {
+        "display": true,
+        "colspan": 1,
+        "rowspan": 1,
+        "content": "txt",
+        "idx": 6,
+        "style": ""
+      },
+      {
+        "display": true,
+        "colspan": 1,
+        "rowspan": 1,
+        "content": "txt",
+        "idx": 7,
+        "style": ""
+      },
+      {
+        "display": true,
+        "colspan": 1,
+        "rowspan": 1,
+        "content": "txt",
+        "idx": 8,
+        "style": ""
+      },
+      {
+        "display": true,
+        "colspan": 1,
+        "rowspan": 1,
+        "content": "txt",
+        "idx": 9,
+        "style": ""
+      },
+      {
+        "display": true,
+        "colspan": 1,
+        "rowspan": 1,
+        "content": "txt",
+        "idx": 10,
+        "style": ""
+      },
+      {
+        "display": true,
+        "colspan": 1,
+        "rowspan": 1,
+        "content": "txt",
+        "idx": 11,
+        "style": ""
+      }
+    ],
+    "idx": 0,
+    "style": ""
+  }],
+  "style": "background-color: lightgray;"
 }

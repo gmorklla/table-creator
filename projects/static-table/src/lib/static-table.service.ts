@@ -147,8 +147,9 @@ export class StaticTableService implements OnDestroy {
       display: true,
       colspan: 1,
       rowspan: 1,
-      content: 'Contenido',
+      content: 'txt',
       idx,
+      style: '',
     };
   }
 

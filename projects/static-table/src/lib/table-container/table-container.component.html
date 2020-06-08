@@ -1,4 +1,4 @@
-<table>
+<table [style]="data?.style">
   <ng-container *ngFor="let row of rows">
     <tr>
       <ng-container *ngFor="let td of row.cols">
@@ -9,6 +9,7 @@
             *ngIf="!!td.display"
             [rowSpan]="td.rowspan"
             [colSpan]="td.colspan"
+            [style]="td.style"
           >
             {{td.content}}
             <span
