@@ -1,34 +1,27 @@
     <div (click)="$event.stopPropagation()">
       <form
-        autocomplete="off"
         [formGroup]="tdFG"
         novalidate
       >
         <div class="td-mat-menu">
-          <span style="margin-right: 10px;">
-            Filas ({{td.rowspan}})
-          </span>
-          <span class="spacer"></span>
-          <mat-form-field [floatLabel]="'never'">
+          <mat-form-field>
             <input
               type="number"
-              formControlName="rowspan"
               matInput
               placeholder="No. de filas"
+              formControlName="rowspan"
+              autocomplete="off"
             />
           </mat-form-field>
         </div>
         <div class="td-mat-menu">
-          <span style="margin-right: 10px;">
-            Columnas ({{td.colspan}})
-          </span>
-          <span class="spacer"></span>
-          <mat-form-field [floatLabel]="'never'">
+          <mat-form-field>
             <input
               type="number"
               formControlName="colspan"
               matInput
               placeholder="No. de columnas"
+              autocomplete="off"
             />
           </mat-form-field>
         </div>
@@ -37,7 +30,7 @@
           (click)="$event.stopPropagation()"
         >
           <span>
-            Mostrar ({{td.display}})
+            Mostrar
           </span>
           <span class="spacer"></span>
           <button

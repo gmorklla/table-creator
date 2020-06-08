@@ -31,6 +31,7 @@
             [ngStyle]="{'background-color': !!td.display ? 'rgba(215, 242, 160, 0.49)' : 'rgba(255, 134, 157, 0.46)'}"
             [ngClass]="{'tdHovered': tdHovered.rowIdx === i && tdHovered.tdIdx === k}"
             (mouseover)="onTdMouseover($event, k, i)"
+            style="cursor: pointer;"
           >
             <div class="table-config-row">
               <span>-</span>
