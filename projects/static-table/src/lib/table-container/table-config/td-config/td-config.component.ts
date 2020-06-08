@@ -45,6 +45,7 @@ export class TdConfigComponent implements OnInit, OnDestroy {
       rowspan: [null],
       colspan: [null],
       contenido: [''],
+      style: [''],
     });
   }
 
@@ -54,6 +55,7 @@ export class TdConfigComponent implements OnInit, OnDestroy {
         rowspan: this.td.rowspan,
         colspan: this.td.colspan,
         contenido: this.td.content,
+        style: this.td.style,
       },
       { emitEvent: false }
     );

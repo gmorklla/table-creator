@@ -6,7 +6,7 @@
         "rowspan": 1,
         "content": "txt",
         "idx": 0,
-        "style": "border: 2px solid black; background-color: black; color: white; text-align: center;"
+        "style": "border: 1px solid crimson; background-color: black; color: white; text-align: center;"
       },
       {
         "display": true,
@@ -97,8 +97,7 @@
         "style": ""
       }
     ],
-    "idx": 0,
-    "style": ""
+    "idx": 0
   }],
   "style": "background-color: lightgray;"
 }
