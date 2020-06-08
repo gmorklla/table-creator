@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { TdItem } from '../../../models/table.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { StaticTableService } from '../../../static-table.service';
-import { Subject } from 'rxjs';
+import { Subject, pipe } from 'rxjs';
 import {
   distinctUntilChanged,
   debounceTime,
@@ -21,6 +21,12 @@ export class TdConfigComponent implements OnInit, OnDestroy {
   @Input() td: TdItem;
   tdFG: FormGroup;
   destroy$ = new Subject();
+  filter$ = pipe(
+    distinctUntilChanged(),
+    debounceTime(1000),
+    filter((val) => !!val)
+  );
+  takeUntil$ = takeUntil(this.destroy$);
 
   constructor(private fb: FormBuilder, private tableS: StaticTableService) {}
 
@@ -61,37 +67,31 @@ export class TdConfigComponent implements OnInit, OnDestroy {
     this.tdFG
       .get('rowspan')
       .valueChanges.pipe(
-        distinctUntilChanged(),
-        debounceTime(1000),
-        filter((totalRowspan) => !!totalRowspan),
-        tap((totalRowspan) => {
+        this.filter$,
+        tap((totalRowspan: number) => {
           this.tableS.changeRowspan(this.rowIdx, this.td.idx, totalRowspan);
         }),
-        takeUntil(this.destroy$)
+        this.takeUntil$
       )
       .subscribe();
     this.tdFG
       .get('colspan')
       .valueChanges.pipe(
-        distinctUntilChanged(),
-        debounceTime(1000),
-        filter((totalColspan) => !!totalColspan),
-        tap((totalColspan) => {
+        this.filter$,
+        tap((totalColspan: number) => {
           this.tableS.changeColspan(this.rowIdx, this.td.idx, totalColspan);
         }),
-        takeUntil(this.destroy$)
+        this.takeUntil$
       )
       .subscribe();
     this.tdFG
       .get('contenido')
       .valueChanges.pipe(
-        distinctUntilChanged(),
-        debounceTime(1000),
-        filter((contenido) => !!contenido),
-        tap((contenido) => {
+        this.filter$,
+        tap((contenido: string) => {
           this.tableS.changeContent(this.rowIdx, this.td.idx, contenido);
         }),
-        takeUntil(this.destroy$)
+        this.takeUntil$
       )
       .subscribe();
   }
